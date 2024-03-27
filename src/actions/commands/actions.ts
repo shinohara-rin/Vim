@@ -586,6 +586,8 @@ class MarkCommand extends BaseCommand {
 
   public override async exec(position: Position, vimState: VimState): Promise<void> {
     const markName = this.keysPressed[1];
+    const validMarks = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz<>[]"^.';
+    if (!validMarks.includes(markName)) return;
 
     vimState.historyTracker.addMark(vimState.document, position, markName);
   }
